@@ -17,10 +17,10 @@ const useTabVisibility = () => {
     visibilityChange = 'webkitvisibilitychange';
   }
   // @ts-ignore
-  const [visible, setVisible] = React.useState(!!document[hidden]);
+  const getVisibility = () => !document[hidden];
 
-  // @ts-ignore
-  const handleVisibility = React.useCallback(() => setVisible(!document[hidden]), [setVisible]);
+  const [visible, setVisible] = React.useState(getVisibility());
+  const handleVisibility = React.useCallback(() => setVisible(getVisibility()), [setVisible]);
 
   React.useEffect(() => {
     document.addEventListener(visibilityChange, handleVisibility, false);
