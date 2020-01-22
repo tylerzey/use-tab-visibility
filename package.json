@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -27,9 +27,9 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
-  "name": "use-tab-visiblity",
+  "name": "use-tab-visibility",
   "author": "tylerzey@gmail.com",
-  "module": "dist/use-tab-visiblity.esm.js",
+  "module": "dist/use-tab-visibility.esm.js",
   "devDependencies": {
     "@types/jest": "^24.9.0",
     "@types/react": "^16.9.19",
