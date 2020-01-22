@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export const useTabVisibility = () => {
+const useTabVisibility = () => {
   let hidden: string;
   let visibilityChange: string;
 
@@ -20,13 +20,15 @@ export const useTabVisibility = () => {
   const [visible, setVisible] = React.useState(!!document[hidden]);
 
   // @ts-ignore
-  const handleVisibility = React.useCallback(() => setVisible(document[hidden]), [setVisible]);
+  const handleVisibility = React.useCallback(() => setVisible(!document[hidden]), [setVisible]);
 
   React.useEffect(() => {
-    window.addEventListener(visibilityChange, handleVisibility, false);
+    document.addEventListener(visibilityChange, handleVisibility, false);
 
-    return window.removeEventListener(visibilityChange, handleVisibility);
+    return () => document.removeEventListener(visibilityChange, handleVisibility);
   }, []);
 
   return { visible };
 };
+
+export default useTabVisibility;
