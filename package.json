@@ -6,6 +6,10 @@
   "main": "dist/index.js",
   "module": "dist/use-tab-visibility.esm.js",
   "typings": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tylerzey/use-tab-visibility.git"
+  },
   "files": [
     "dist"
   ],
