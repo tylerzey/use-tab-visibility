@@ -16,7 +16,7 @@ Basic usage:
 
 ```js
 import React from 'react';
-import useMetadata from 'use-tab-visibility';
+import useTabVisibility from 'use-tab-visibility';
 
 function App() {
   const { visible } = useTabVisibility();
