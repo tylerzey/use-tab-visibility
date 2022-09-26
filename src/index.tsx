@@ -1,40 +1,39 @@
-import { useEffect, useCallback, useState } from 'react';
+import { useEffect, useCallback, useState, useMemo } from 'react';
 
-let hidden: string;
-let visibilityChange: string;
-
-const getVisibility = () => {
-  if (typeof document === 'undefined') {
-    return false;
-  }
-
-  if (typeof document.hidden !== 'undefined') {
-    hidden = 'hidden';
-    visibilityChange = 'visibilitychange';
-    // @ts-ignore
-  } else if (typeof document.msHidden !== 'undefined') {
-    hidden = 'msHidden';
-    visibilityChange = 'msvisibilitychange';
+const getEventListenerName = (): string => {
+  // @ts-ignore
+  if (typeof document.msHidden !== 'undefined') {
+    return 'msvisibilitychange';
     // @ts-ignore
   } else if (typeof document.webkitHidden !== 'undefined') {
-    hidden = 'webkitHidden';
-    visibilityChange = 'webkitvisibilitychange';
+    return 'webkitvisibilitychange';
   }
+
+  return 'visibilitychange';
+};
+
+const getIsVisible = (): boolean => {
+  // SSR
+  if (typeof document === 'undefined') {
+    return true;
+  }
+
   // @ts-ignore
-  return !document[hidden];
+  return !(document.hidden ?? document.msHidden ?? document.webkitHidden);
 };
 
 const useTabVisibility = () => {
-  const [visible, setVisible] = useState(getVisibility());
-  const handleVisibility = useCallback(() => setVisible(getVisibility()), [setVisible]);
+  const [visible, setVisible] = useState(getIsVisible());
+  const handleVisibility = useCallback(() => setVisible(getIsVisible()), [setVisible]);
 
   useEffect(() => {
-    window?.document.addEventListener(visibilityChange, handleVisibility, false);
+    const evListenerName = getEventListenerName();
+    window?.document.addEventListener(evListenerName, handleVisibility, false);
 
-    return () => window?.document.removeEventListener(visibilityChange, handleVisibility);
+    return () => window?.document.removeEventListener(evListenerName, handleVisibility);
   }, [handleVisibility]);
 
-  return { visible };
+  return useMemo(() => ({ visible }), [visible]);
 };
 
 export default useTabVisibility;
