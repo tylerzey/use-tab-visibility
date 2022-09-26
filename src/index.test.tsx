@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import useTabVisibility from './index';
-
+import { test, expect } from 'vitest';
 const isVisibleTestId = 'isVisible';
 
 const App: React.FC = () => {

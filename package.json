@@ -14,16 +14,9 @@
     "dist"
   ],
   "scripts": {
-    "start": "tsdx watch",
-    "build": "tsdx build",
-    "test": "tsdx test --watchAll",
-    "lint": "tsdx lint",
-    "prepare": "tsdx build"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "tsdx lint && tsdx build"
-    }
+    "lint": "prettier --write .",
+    "build": "tsup ./src/index.tsx --dts",
+    "test": "vitest"
   },
   "prettier": {
     "printWidth": 130,
@@ -32,16 +25,17 @@
     "trailingComma": "es5"
   },
   "devDependencies": {
-    "@testing-library/react": "^11.2.6",
-    "@types/jest": "^26.0.23",
+    "@testing-library/react": "13.4.0",
     "@types/react": "^17.0.4",
     "@types/react-dom": "^17.0.3",
-    "husky": "^6.0.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "tsdx": "^0.14.1",
-    "tslib": "^2.2.0",
-    "typescript": "^4.2.4"
+    "happy-dom": "6.0.4",
+    "prettier": "2.7.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "tslib": "2.2.0",
+    "tsup": "^6.2.3",
+    "typescript": "4.2.4",
+    "vitest": "^0.23.4"
   },
   "peerDependencies": {
     "react": ">=16"

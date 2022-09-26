@@ -1,12 +1,13 @@
 {
   "include": ["src", "types", "test"],
   "compilerOptions": {
-    "target": "es5",
+    "target": "es2019",
     "module": "esnext",
     "lib": ["dom", "esnext"],
     "importHelpers": true,
     "declaration": true,
     "sourceMap": true,
+    "importsNotUsedAsValues": "error",
     "rootDir": "./",
     "strict": true,
     "noImplicitAny": true,

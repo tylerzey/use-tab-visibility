@@ -7,7 +7,7 @@ const getVisibility = () => {
   if (typeof document === 'undefined') {
     return false;
   }
-  
+
   if (typeof document.hidden !== 'undefined') {
     hidden = 'hidden';
     visibilityChange = 'visibilitychange';
