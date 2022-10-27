@@ -26,7 +26,7 @@
   },
   "devDependencies": {
     "@testing-library/react": "13.4.0",
-    "@types/react": "18.0.21",
+    "@types/react": "18.0.24",
     "@types/react-dom": "18.0.6",
     "happy-dom": "7.4.0",
     "prettier": "2.7.1",
