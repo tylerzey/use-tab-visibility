@@ -1,25 +1,16 @@
 import { useEffect, useCallback, useState, useMemo } from 'react';
 
 const getEventListenerName = (): string => {
-  // @ts-ignore
-  if (typeof document.msHidden !== 'undefined') {
-    return 'msvisibilitychange';
-    // @ts-ignore
-  } else if (typeof document.webkitHidden !== 'undefined') {
-    return 'webkitvisibilitychange';
-  }
-
   return 'visibilitychange';
 };
 
 const getIsVisible = (): boolean => {
-  // SSR
+  // assumes ssr generated page is always true
   if (typeof document === 'undefined') {
     return true;
   }
 
-  // @ts-ignore
-  return !(document.hidden ?? document.msHidden ?? document.webkitHidden);
+  return !document.hidden;
 };
 
 const useTabVisibility = () => {
